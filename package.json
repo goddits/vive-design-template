@@ -1,5 +1,6 @@
 {
-  "name": "vive-design-admin",
+  "name": "vive-design-template",
+  "author": "charles-hong",
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",

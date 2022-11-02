@@ -1,5 +1,5 @@
 import axios, { AxiosInstance, AxiosError, AxiosRequestConfig, AxiosResponse } from "axios";
-import { ElMessage } from "element-plus";
+import { message } from "ant-design-vue";
 import { useRouter } from 'vue-router'
 const router = useRouter()
 
@@ -79,7 +79,7 @@ class RequestHttp {
       }
       // 全局错误信息拦截（防止下载文件得时候返回数据流，没有code，直接报错）
       if (data.code && data.code !== RequestEnums.SUCCESS) {
-        ElMessage.error(data); // 此处也可以使用组件提示报错信息
+        message.error(data); // 此处也可以使用组件提示报错信息
         return Promise.reject(data)
       }
       return data;
@@ -90,7 +90,7 @@ class RequestHttp {
           this.handleCode(response.status)
         }
         if (!window.navigator.onLine) {
-          ElMessage.error('网络连接失败');
+          message.error('网络连接失败');
           // 可以跳转到错误页面，也可以不做操作
           return router.replace({
             path: '/404'
@@ -103,10 +103,10 @@ class RequestHttp {
   handleCode(code: number): void {
     switch (code) {
       case 401:
-        ElMessage.error('登录失败，请重新登录');
+        message.error('登录失败，请重新登录');
         break;
       default:
-        ElMessage.error('请求失败');
+        message.error('请求失败');
         break;
     }
   }
